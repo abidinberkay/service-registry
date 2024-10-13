@@ -45,4 +45,14 @@ import: "optional:configserver:http://localhost:8088"
 
 6.2 write business logic for the employee service
 
-6.3  before running it restart the config server as well to load its properties
+6.3 before running it restart the config server as well to load its properties
+
+7- employee client is added to department service
+
+7.1 webflux dependency is added to department service to use webclient
+
+7.2 config is added to department service
+
+8- api gateway service is added
+
+8.1 yaml file of api gateway modified

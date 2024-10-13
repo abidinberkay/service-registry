@@ -1,5 +1,6 @@
 package com.berkay.department_service.controller;
 
+import com.berkay.department_service.client.EmployeeClient;
 import com.berkay.department_service.model.Department;
 import com.berkay.department_service.repository.DepartmentRepository;
 import org.slf4j.Logger;
@@ -19,8 +20,8 @@ public class DepartmentController {
     @Autowired
     private DepartmentRepository repository;
 
-//    @Autowired
-//    private EmployeeClient employeeClient;
+    @Autowired
+    private EmployeeClient employeeClient;
 
     @PostMapping
     public Department add(@RequestBody Department department) {
@@ -40,16 +41,14 @@ public class DepartmentController {
         return repository.findById(id);
     }
 
-//    @GetMapping("/with-employees")
-//    public List<Department> findAllWithEmployees() {
-//        LOGGER.info("Department find");
-//        List<Department> departments
-//                = repository.findAll();
-//        departments.forEach(department ->
-//                department.setEmployees(
-//                        employeeClient.findByDepartment(department.getId())));
-//        return  departments;
-//    }
-
-
+    @GetMapping("/with-employees")
+    public List<Department> findAllWithEmployees() {
+        LOGGER.info("Department find");
+        List<Department> departments
+                = repository.findAll();
+        departments.forEach(department ->
+                department.setEmployees(
+                        employeeClient.findByDepartment(department.getId())));
+        return  departments;
+    }
 }
